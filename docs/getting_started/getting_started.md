@@ -1,4 +1,4 @@
-# 快速入门
+# 入门指南
 
 本教程让您快速了解如何使用 LangChain 构建端到端语言模型应用程序。
 
@@ -35,7 +35,7 @@ import os
 os.environ["OPENAI_API_KEY"] = "..."
 ```
 
-## 构建语言模型应用：LLMs
+## 构建语言模型应用 —— 使用 LLMs wrapper
 
 之前已经安装了 LangChain 并设置了环境变量，我们可以开始构建我们的语言模型应用了。
 
@@ -44,23 +44,23 @@ LangChain 提供了很多可以用来构建语言模型应用的 modules。这�
 ## LLMs: 从语言模型中获取预测
 
 LangChain 最小化应用是在用户输入后直接调用 LLM。
-Let's walk through a simple example of how to do this.
-For this purpose, let's pretend we are building a service that generates a company name based on what the company makes.
+咱们通过一个例子来看看怎么创建。
+假设我们正在构建一项服务，该服务会根据公司的产品生成公司名称。
 
-In order to do this, we first need to import the LLM wrapper.
+为此，我们首先需要导入 LLMs 的 wrapper。
 
 ```python
 from langchain.llms import OpenAI
 ```
 
-We can then initialize the wrapper with any arguments.
-In this example, we probably want the outputs to be MORE random, so we'll initialize it with a HIGH temperature.
+然后使用参数来初始化 wrapper。
+这个例子中，我们希望输出的结果偏随机一些，在初始化的时候就可以把 temperature 设置的高一些。
 
 ```python
 llm = OpenAI(temperature=0.9)
 ```
 
-We can now call it on some input!
+接下来我们带着一个问题调用一下！
 
 ```python
 text = "What would be a good company name for a company that makes colorful socks?"
@@ -71,20 +71,22 @@ print(llm(text))
 Feetful of Fun
 ```
 
-For more details on how to use LLMs within LangChain, see the [LLM getting started guide](../modules/models/llms/getting_started.ipynb).
+有关如何在 LangChain 中使用 LLMs 的更多详细信息，可以查看 [LLMs 入门指南](../modules/models/llms/getting_started.ipynb).
 
-## Prompt Templates: Manage prompts for LLMs
+## 提示词模板: 管理 LLM 提示词
 
-Calling an LLM is a great first step, but it's just the beginning.
-Normally when you use an LLM in an application, you are not sending user input directly to the LLM.
-Instead, you are probably taking user input and constructing a prompt, and then sending that to the LLM.
+调用 LLMs 完成了很好的一步，但也只是个开始。
 
-For example, in the previous example, the text we passed in was hardcoded to ask for a name for a company that made colorful socks.
-In this imaginary service, what we would want to do is take only the user input describing what the company does, and then format the prompt with that information.
+通常，在应用程序中使用 LLM 时，不会把用户输入的内容直接发送到 LLM。
+而是应该通过用户输入构建一个提示词，然后再发给 LLM。
 
-This is easy to do with LangChain!
+例如，在前面的例子中，我们传递的 text 是硬编码的，要求提供一家生产彩色袜子的公司的名称。
 
-First lets define the prompt template:
+在这个假想的服务中，我们想做的是只接受描述公司所做事情的用户输入，然后把这些信息格式化成提示词。
+
+这个用 LangChain 做起来非常简单。
+
+首先，我们先定义一个提示词模板：
 
 ```python
 from langchain.prompts import PromptTemplate
@@ -95,7 +97,7 @@ prompt = PromptTemplate(
 )
 ```
 
-Let's now see how this works! We can call the `.format` method to format it.
+现在我们看看怎么用起来！我们可以调用`.format`方法对其进行格式化。
 
 ```python
 print(prompt.format(product="colorful socks"))
@@ -105,17 +107,17 @@ print(prompt.format(product="colorful socks"))
 What is a good name for a company that makes colorful socks?
 ```
 
-[For more details, check out the getting started guide for prompts.](../modules/prompts/chat_prompt_template.ipynb)
+想看更多细节，可以查看[提示词入门指南](../modules/prompts/chat_prompt_template.ipynb)。
 
-## Chains: Combine LLMs and prompts in multi-step workflows
+## Chains: 把 LLMs 和提示词组合成多步工作流
 
-Up until now, we've worked with the PromptTemplate and LLM primitives by themselves. But of course, a real application is not just one primitive, but rather a combination of them.
+到目前为止，我们已经单独使用了提示词模板和原生 LLM 调用。不过，真正的应用程序肯定不能只是简单调用原生 LLM，而应该是它们的组合。
 
-A chain in LangChain is made up of links, which can be either primitives like LLMs or other chains.
+LangChain 中的 chain 是由 links 组成的，链接可以是一个原生 LLM，也可以是其它 chain。
 
-The most core type of chain is an LLMChain, which consists of a PromptTemplate and an LLM.
+最核心的链类型是 LLMChain，它由一个提示词模板和一个 LLM 组成。
 
-Extending the previous example, we can construct an LLMChain which takes user input, formats it with a PromptTemplate, and then passes the formatted response to an LLM.
+扩展一下之前的例子，我们构建一个 LLMChain，它接受用户输入，使用提示词模板格式化一下，再把结果发给 LLM。
 
 ```python
 from langchain.prompts import PromptTemplate
@@ -128,7 +130,7 @@ prompt = PromptTemplate(
 )
 ```
 
-We can now create a very simple chain that will take user input, format the prompt with it, and then send it to the LLM:
+我们现在可以创建一个非常简单的 chain 先接受用户输入，然后格式化提示词，然后将它发送到 LLM：
 
 ```python
 from langchain.chains import LLMChain
@@ -142,10 +144,11 @@ chain.run("colorful socks")
 # -> '\n\nSocktastic!'
 ```
 
-There we go! There's the first chain - an LLM Chain.
-This is one of the simpler types of chains, but understanding how it works will set you up well for working with more complex chains.
+运行一下吧！这是我们的第一个 Chain，一个 LLM Chain.
 
-[For more details, check out the getting started guide for chains.](../modules/chains/getting_started.ipynb)
+这是一种很简单的 chain，不过有了这个基础，后面会更容易掌握复杂一点的 chain。
+
+想了解更多细节，可以查看[Chains 入门指南](../modules/chains/getting_started.ipynb)。
 
 ## Agents: Dynamically Call Chains Based on User Input
 

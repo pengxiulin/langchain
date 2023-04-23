@@ -21,7 +21,7 @@ The following sections of documentation are provided:
 
 .. toctree::
    :maxdepth: 1
-   :caption: Prompt模版
+   :caption: Prompt 模版
    :name: Prompt Templates
    :hidden:
 
