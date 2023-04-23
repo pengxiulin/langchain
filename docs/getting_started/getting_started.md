@@ -107,7 +107,7 @@ print(prompt.format(product="colorful socks"))
 What is a good name for a company that makes colorful socks?
 ```
 
-想看更多细节，可以查看[提示词入门指南](../modules/prompts/chat_prompt_template.ipynb)。
+想看更多细节，可以查看 [提示词入门指南](../modules/prompts/chat_prompt_template.ipynb)。
 
 ## Chains: 把 LLMs 和提示词组合成多步工作流
 
@@ -148,40 +148,40 @@ chain.run("colorful socks")
 
 这是一种很简单的 chain，不过有了这个基础，后面会更容易掌握复杂一点的 chain。
 
-想了解更多细节，可以查看[Chains 入门指南](../modules/chains/getting_started.ipynb)。
+想了解更多细节，可以查看 [Chains 入门指南](../modules/chains/getting_started.ipynb)。
 
-## Agents: Dynamically Call Chains Based on User Input
+## Agents: 基于用户输入动态调用 Chains
 
-So far the chains we've looked at run in a predetermined order.
+目前为止，我们看到 chains 是按预定顺序调用的。
 
-Agents no longer do: they use an LLM to determine which actions to take and in what order. An action can either be using a tool and observing its output, or returning to the user.
+Agents 不再这么干了：先调用 LLM 来约定使用哪个 action 来执行，以及执行的顺序是怎样的。一个 action 可以使用 tool 并观察其输出，也可以返回给用户。
 
-When used correctly agents can be extremely powerful. In this tutorial, we show you how to easily use agents through the simplest, highest level API.
+如果使用得当，Agents 会非常强大。在这个教程中，我们会给你展示怎么通过最简单、最高阶的 API 轻松使用 Agents。
 
-In order to load agents, you should understand the following concepts:
+想要加载 Agents，你需要理解这么几个概念：
 
-- Tool: A function that performs a specific duty. This can be things like: Google Search, Database lookup, Python REPL, other chains. The interface for a tool is currently a function that is expected to have a string as an input, with a string as an output.
-- LLM: The language model powering the agent.
-- Agent: The agent to use. This should be a string that references a support agent class. Because this notebook focuses on the simplest, highest level API, this only covers using the standard supported agents. If you want to implement a custom agent, see the documentation for custom agents (coming soon).
+- Tool: 执行特定任务的功能。这可以是：Google 搜索、数据库查找、Python REPL、其他链。tool 的接口目前是一个函数，传入字符串，返回字符串。
+- LLM: 控制 agent 的大语言模型。
+- Agent: 字符串类型，执行要使用哪个 agent 类。由于这个教程侧重于最简单、最高阶的 API，因此仅涵盖使用标准支持的 Agents。如果您想实现一个自定义 agent，请参阅自定义 agents 的文档（在路上了）。
 
-**Agents**: For a list of supported agents and their specifications, see [here](../modules/agents/agents.md).
+**Agents**: 关于现有 agents 及其参数表，可以查看 [这里](../modules/agents/agents.md)。
 
-**Tools**: For a list of predefined tools and their specifications, see [here](../modules/agents/tools.md).
+**Tools**: 关于现有 tools 及其参数表，可以查看 [这里](../modules/agents/tools.md).
 
-For this example, you will also need to install the SerpAPI Python package.
+下面这个例子，需要先安装一下 SerpAPI 的 Python 包
 
 ```bash
 pip install google-search-results
 ```
 
-And set the appropriate environment variables.
+然后设置一下所需的环境变量。
 
 ```python
 import os
 os.environ["SERPAPI_API_KEY"] = "..."
 ```
 
-Now we can get started!
+现在就可以运行了！
 
 ```python
 from langchain.agents import load_tools
