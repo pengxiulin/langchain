@@ -49,7 +49,7 @@ LangChain 提供支持的主要模块有若干个。
 
 .. toctree::
    :maxdepth: 1
-   :caption: Modules
+   :caption: 模块
    :name: modules
    :hidden:
 

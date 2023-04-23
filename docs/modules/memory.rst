@@ -26,7 +26,7 @@ The following sections of documentation are provided:
 
 .. toctree::
    :maxdepth: 1
-   :caption: 内存
+   :caption: 记忆
    :name: Memory
 
    ./memory/getting_started.ipynb

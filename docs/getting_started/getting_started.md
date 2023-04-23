@@ -220,13 +220,13 @@ Final Answer: The high temperature in SF yesterday in Fahrenheit raised to the .
 > Finished chain.
 ```
 
-## Memory: 为 Chains 和 Agents 添加状态
+## 记忆: 为 Chains 和 Agents 添加状态
 
-目前为止，我们用的所有 Chains 和 Agents 都是无状态的。但通常，您可能希望 Chains 或 Agents 有“记忆”，以便它能记起之前的交互内容。这方面最清楚、最简单的例子是在设计聊天机器人时：你肯定希望它记住以前的消息，这样它就可以利用其中的上下文进行更好的对话。这需要一种“短期 Memory”。在更复杂的场景下，一个 chain 或 agent 会需要记住更长时间的关键信息片段 —— 这将是一种“长期 Memory”。关于长期 Memory 的更多具体想法，请参阅[这篇很棒的论文](https://memprompt.com/)。
+目前为止，我们用的所有 Chains 和 Agents 都是无状态的。但通常，您可能希望 Chains 或 Agents 有“记忆”，以便它能记起之前的交互内容。这方面最清楚、最简单的例子是在设计聊天机器人时：你肯定希望它记住以前的消息，这样它就可以利用其中的上下文进行更好的对话。这需要一种“短期记忆”。在更复杂的场景下，一个 chain 或 agent 会需要记住更长时间的关键信息片段 —— 这将是一种“长期记忆”。关于长期记忆的更多具体想法，请参阅[这篇很棒的论文](https://memprompt.com/)。
 
 LangChain 提供了几个专门为此目的创建的 chains。接下来我们会用一下 `ConversationChain`，它同时使用了长短两种不同类型 menory。
 
-默认情况下，`ConversationChain` 有一种简单类型的内存，可以记住所有以前的输入/输出并将它们添加到上下文中。咱们一起来看看使用这个链（设置 `verbose=True` 以便我们可以看到提示）。
+默认情况下，`ConversationChain` 有一种简单类型的记忆，可以记住所有以前的输入/输出并将它们添加到上下文中。咱们一起来看看使用这个链（设置 `verbose=True` 以便我们可以看到提示）。
 
 ```python
 from langchain import OpenAI, ConversationChain
@@ -454,9 +454,9 @@ Final Answer: 2.169459462491557
 '2.169459462491557'
 ```
 
-## Memory: 为 Chains 和 Agents 添加状态
+## 记忆: 给 Chains 和 Agents 添加状态
 
-你可以把 Memory 和 Chat 模型一起传入到 Chains 和 Agents 中。这么调用和 Memory for LLMs 的区别在于：它们可以作为一个内存对象存在，而不是把之前的消息摘要成一个字符串。
+你可以把 Memory 和 Chat 模型一起传入到 Chains 和 Agents 中。这么调用和 Memory for LLMs 的区别在于：它们可以作为一个独立可操作的 Memory 对象存在，而不是把之前的消息摘要成一个字符串。
 
 ```python
 from langchain.prompts import (
