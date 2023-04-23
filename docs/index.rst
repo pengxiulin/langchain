@@ -36,11 +36,11 @@ LangChain 提供支持的主要模块有若干个。
 
 - `提示词 <./modules/prompts.html>`_: 包括提示词管理、优化和序列化.
 
-- `Memory <./modules/memory.html>`_: 内存是在调用chain和agent之间保持状态。LangChain 提供了一个内存的标准接口、一个内存实现的集合和chains/agents如何使用内存的示例。
+- `记忆 <./modules/memory.html>`_: 记忆是为了能在调用思维链和agent时保持状态。LangChain 提供了一套记忆的标准接口、一个记忆实现的集合和思维链、agents 如何使用内存的示例。
 
-- `Indexes <./modules/indexes.html>`_: 当与您自己的文本数据相结合时，语言模型通常更强大 —— Index模块涵盖了实现这一点的最佳实践。
+- `Indexes <./modules/indexes.html>`_: 当与您自己的文本数据相结合时，语言模型会更加强大 —— Index模块涵盖了实现这一点的最佳实践。
 
-- `Chains <./modules/chains.html>`_: Chains不仅仅是一个 LLM 调用，而是一系列调用（无论是对 LLM 还是对不同的实用程序）。LangChain 为chains提供了标准接口，与其他工具进行了大量集成，并为常见应用程序提供了端到端链。
+- `思维链 <./modules/chains.html>`_: 思维链不仅仅是一个 LLM 调用，而是一系列调用（无论是对 LLM 还是对不同的实用程序）。LangChain 为思维链提供了标准接口，与其他工具进行了大量集成，并为常见应用程序提供了端到端链。
 
 
 
@@ -86,7 +86,7 @@ LangChain 提供支持的主要模块有若干个。
 
 - `摘要总结 <./use_cases/summarization.html>`_: 把长文档总结成更短、更浓缩的信息块。一种数据增强生成。
 
-- `评估 <./use_cases/evaluation.html>`_: 众所周知，生成模型很难用传统指标进行评估。评估它们的一种新方法是使用语言模型本身进行评估。LangChain提供了一些提示词、chains 来协助这一点。
+- `评估 <./use_cases/evaluation.html>`_: 众所周知，生成模型很难用传统指标进行评估。评估它们的一种新方法是使用语言模型本身进行评估。LangChain提供了一些提示词、思维链来协助这一点。
 
 
 .. toctree::

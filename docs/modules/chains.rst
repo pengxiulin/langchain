@@ -21,7 +21,7 @@ The following sections of documentation are provided:
 
 .. toctree::
    :maxdepth: 1
-   :caption: Chains
+   :caption: 思维链
    :name: Chains
    :hidden:
 
