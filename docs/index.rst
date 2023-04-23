@@ -1,36 +1,25 @@
 欢迎来到 LangChain
 ==========================
 
-LangChain is a framework for developing applications powered by language models. We believe that the most powerful and differentiated applications will not only call out to a language model via an API, but will also:
-
-LangChain是一个用于开发由语言模型支持的应用程序框架。我们相信，最强大、最有差异的应用程序不仅会通过API调用语言模型，而且还会:
-
-- *Be data-aware*: connect a language model to other sources of data
-- *Be agentic*: allow a language model to interact with its environment
+LangChain是一个用于开发由语言模型支持的应用程序框架。我们相信，最强大、最有差异的应用程序不仅会通过API调用语言模型，还应该:
 
 - *能够感知数据*: 将语言模型连接到其他数据源
 - *有自觉性*: 允许语言模型与其环境交互
 
-The LangChain framework is designed with the above principles in mind.
-
 LangChain框架设计时考虑到了上述原则。
-
-This is the Python specific portion of the documentation. For a purely conceptual guide to LangChain, see `here <https://docs.langchain.com/docs/>`_. For the JavaScript documentation, see `here <https://js.langchain.com/docs/>`_.
 
 这是文档中特定于Python的部分。有关LangChain的纯概念指南，请参阅`这里 <https://docs.langchain.com/docs/>`_. JavaScript 文档, 请查看 `here <https://js.langchain.com/docs/>`_.
 
 入门
 ----------------
 
-Checkout the below guide for a walkthrough of how to get started using LangChain to create an Language Model application.
-
 接下来我们开始来了解如何使用LangChain创建语言模型应用程序。
 
-- `开始文档 <./getting_started/getting_started.html>`_
+- `快速入门 <./getting_started/getting_started.html>`_
 
 .. toctree::
    :maxdepth: 1
-   :caption: Getting Started
+   :caption: 快速入门
    :name: getting_started
    :hidden:
 
@@ -102,7 +91,7 @@ LangChain提供支持的主要模块有若干个。
 
 .. toctree::
    :maxdepth: 1
-   :caption: Use Cases
+   :caption: 用例
    :name: use_cases
    :hidden:
 
@@ -128,7 +117,7 @@ LangChain的所有参考文档，都在这里：关于LangChain的所有方法�
 - `Reference Documentation <./reference.html>`_
 .. toctree::
    :maxdepth: 1
-   :caption: Reference
+   :caption: 参考文档
    :name: reference
    :hidden:
 
@@ -147,7 +136,7 @@ LangChain生态
 .. toctree::
    :maxdepth: 1
    :glob:
-   :caption: Ecosystem
+   :caption: LangChain生态
    :name: ecosystem
    :hidden:
 
@@ -180,7 +169,7 @@ LangChain生态
 
 .. toctree::
    :maxdepth: 1
-   :caption: Additional Resources
+   :caption: 其它资源
    :name: resources
    :hidden:
 

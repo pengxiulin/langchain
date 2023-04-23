@@ -1,11 +1,10 @@
-# Quickstart Guide
+# 快速入门
 
+本教程让您快速了解如何使用 LangChain 构建端到端语言模型应用程序。
 
-This tutorial gives you a quick walkthrough about building an end-to-end language model application with LangChain.
+## 安装
 
-## Installation
-
-To get started, install LangChain with the following command:
+首先，使用以下命令安装 LangChain：
 
 ```bash
 pip install langchain
@@ -13,43 +12,39 @@ pip install langchain
 conda install langchain -c conda-forge
 ```
 
+## 设置环境变量
 
-## Environment Setup
+使用 LangChain 通常需要与一个或多个模型提供者、数据存储、api 等集成。
 
-Using LangChain will usually require integrations with one or more model providers, data stores, apis, etc.
-
-For this example, we will be using OpenAI's APIs, so we will first need to install their SDK:
+对于这个例子，我们将使用 OpenAI 的 API，所以我们首先需要安装他们的 SDK：
 
 ```bash
 pip install openai
 ```
 
-We will then need to set the environment variable in the terminal.
+然后我们需要在终端中设置环境变量。
 
 ```bash
 export OPENAI_API_KEY="..."
 ```
 
-Alternatively, you could do this from inside the Jupyter notebook (or Python script):
+或者，您可以从 Jupyter notebook（或 Python 脚本）中执行此操作：
 
 ```python
 import os
 os.environ["OPENAI_API_KEY"] = "..."
 ```
 
+## 构建语言模型应用：LLMs
 
-## Building a Language Model Application: LLMs
+之前已经安装了 LangChain 并设置了环境变量，我们可以开始构建我们的语言模型应用了。
 
-Now that we have installed LangChain and set up our environment, we can start building our language model application.
+LangChain 提供了很多可以用来构建语言模型应用的 modules。这些 modules 可以组合起来创建复杂应用，或者单独创建一个简单应用。
 
-LangChain provides many modules that can be used to build language model applications. Modules can be combined to create more complex applications, or be used individually for simple applications.
+## LLMs: 从语言模型中获取预测
 
-
-
-## LLMs: Get predictions from a language model
-
-The most basic building block of LangChain is calling an LLM on some input.
-Let's walk through a simple example of how to do this. 
+LangChain 最小化应用是在用户输入后直接调用 LLM。
+Let's walk through a simple example of how to do this.
 For this purpose, let's pretend we are building a service that generates a company name based on what the company makes.
 
 In order to do this, we first need to import the LLM wrapper.
@@ -77,7 +72,6 @@ Feetful of Fun
 ```
 
 For more details on how to use LLMs within LangChain, see the [LLM getting started guide](../modules/models/llms/getting_started.ipynb).
-
 
 ## Prompt Templates: Manage prompts for LLMs
 
@@ -111,11 +105,7 @@ print(prompt.format(product="colorful socks"))
 What is a good name for a company that makes colorful socks?
 ```
 
-
 [For more details, check out the getting started guide for prompts.](../modules/prompts/chat_prompt_template.ipynb)
-
-
-
 
 ## Chains: Combine LLMs and prompts in multi-step workflows
 
@@ -164,7 +154,6 @@ So far the chains we've looked at run in a predetermined order.
 Agents no longer do: they use an LLM to determine which actions to take and in what order. An action can either be using a tool and observing its output, or returning to the user.
 
 When used correctly agents can be extremely powerful. In this tutorial, we show you how to easily use agents through the simplest, highest level API.
-
 
 In order to load agents, you should understand the following concepts:
 
@@ -227,8 +216,6 @@ Final Answer: The high temperature in SF yesterday in Fahrenheit raised to the .
 
 > Finished chain.
 ```
-
-
 
 ## Memory: Add State to Chains and Agents
 
@@ -323,6 +310,7 @@ chat(messages)
 ```
 
 You can go one step further and generate completions for multiple sets of messages using `generate`. This returns an `LLMResult` with an additional `message` parameter:
+
 ```python
 batch_messages = [
     [
@@ -340,13 +328,14 @@ result
 ```
 
 You can recover things like token usage from this LLMResult:
+
 ```
 result.llm_output['token_usage']
 # -> {'prompt_tokens': 71, 'completion_tokens': 18, 'total_tokens': 89}
 ```
 
-
 ## Chat Prompt Templates
+
 Similar to LLMs, you can make use of templating by using a `MessagePromptTemplate`. You can build a `ChatPromptTemplate` from one or more `MessagePromptTemplate`s. You can use `ChatPromptTemplate`'s `format_prompt` -- this returns a `PromptValue`, which you can convert to a string or `Message` object, depending on whether you want to use the formatted value as input to an llm or chat model.
 
 For convience, there is a `from_template` method exposed on the template. If you were to use this template, this is what it would look like:
@@ -374,6 +363,7 @@ chat(chat_prompt.format_prompt(input_language="English", output_language="French
 ```
 
 ## Chains with Chat Models
+
 The `LLMChain` discussed in the above section can be used with chat models as well:
 
 ```python
@@ -399,6 +389,7 @@ chain.run(input_language="English", output_language="French", text="I love progr
 ```
 
 ## Agents with Chat Models
+
 Agents can also be used with chat models, you can initialize one using `AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION` as the agent type.
 
 ```python
@@ -457,14 +448,16 @@ Final Answer: 2.169459462491557
 > Finished chain.
 '2.169459462491557'
 ```
+
 ## Memory: Add State to Chains and Agents
+
 You can use Memory with chains and agents initialized with chat models. The main difference between this and Memory for LLMs is that rather than trying to condense all previous messages into a string, we can keep them as their own unique memory object.
 
 ```python
 from langchain.prompts import (
-    ChatPromptTemplate, 
-    MessagesPlaceholder, 
-    SystemMessagePromptTemplate, 
+    ChatPromptTemplate,
+    MessagesPlaceholder,
+    SystemMessagePromptTemplate,
     HumanMessagePromptTemplate
 )
 from langchain.chains import ConversationChain
@@ -491,4 +484,3 @@ conversation.predict(input="I'm doing well! Just having a conversation with an A
 conversation.predict(input="Tell me about yourself.")
 # -> "Sure! I am an AI language model created by OpenAI. I was trained on a large dataset of text from the internet, which allows me to understand and generate human-like language. I can answer questions, provide information, and even have conversations like this one. Is there anything else you'd like to know about me?"
 ```
-
