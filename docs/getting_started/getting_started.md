@@ -28,14 +28,14 @@ pip install openai
 export OPENAI_API_KEY="..."
 ```
 
-或者，您可以从 Jupyter notebook（或 Python 脚本）中执行此操作：
+或者，你也可以从 Jupyter notebook（或 Python 脚本）中执行此操作：
 
 ```python
 import os
 os.environ["OPENAI_API_KEY"] = "..."
 ```
 
-## 构建语言模型应用 —— 使用大语言模型(LLMs)
+## 用 LLMs 构建一个语言型应用
 
 之前已经安装了 LangChain 并设置了环境变量，我们可以开始构建我们的语言模型应用了。
 
@@ -162,7 +162,7 @@ Agents 不再这么干了：先调用 LLM 来约定使用哪个 action 来执行
 
 - Tool: 执行特定任务的功能。这可以是：Google 搜索、数据库查找、Python REPL、其他链。tool 的接口目前是一个函数，传入字符串，返回字符串。
 - LLM: 控制 agent 的大语言模型。
-- Agent: 字符串类型，执行要使用哪个 agent 类。由于这个教程侧重于最简单、最高阶的 API，因此仅涵盖使用标准支持的 Agents。如果您想实现一个自定义 agent，请参阅自定义 agents 的文档（在路上了）。
+- Agent: 字符串类型，执行要使用哪个 agent 类。由于这个教程侧重于最简单、最高阶的 API，因此仅涵盖使用标准支持的 Agents。如果你想实现一个自定义 agent，请参阅自定义 agents 的文档（在路上了）。
 
 **Agents**: 关于现有 agents 及其参数表，可以查看 [这里](../modules/agents/agents.md)。
 
@@ -222,7 +222,7 @@ Final Answer: The high temperature in SF yesterday in Fahrenheit raised to the .
 
 ## 记忆: 为 Chains 和 Agents 添加状态
 
-目前为止，我们用的所有 Chains 和 Agents 都是无状态的。但通常，您可能希望 Chains 或 Agents 有“记忆”，以便它能记起之前的交互内容。这方面最清楚、最简单的例子是在设计聊天机器人时：你肯定希望它记住以前的消息，这样它就可以利用其中的上下文进行更好的对话。这需要一种“短期记忆”。在更复杂的场景下，一个 chain 或 agent 会需要记住更长时间的关键信息片段 —— 这将是一种“长期记忆”。关于长期记忆的更多具体想法，请参阅[这篇很棒的论文](https://memprompt.com/)。
+目前为止，我们用的所有 Chains 和 Agents 都是无状态的。但通常，你可能希望 Chains 或 Agents 有“记忆”，以便它能记起之前的交互内容。这方面最清楚、最简单的例子是在设计聊天机器人时：你肯定希望它记住以前的消息，这样它就可以利用其中的上下文进行更好的对话。这需要一种“短期记忆”。在更复杂的场景下，一个 chain 或 agent 会需要记住更长时间的关键信息片段 —— 这将是一种“长期记忆”。关于长期记忆的更多具体想法，请参阅[这篇很棒的论文](https://memprompt.com/)。
 
 LangChain 提供了几个专门为此目的创建的 chains。接下来我们会用一下 `ConversationChain`，它同时使用了长短两种不同类型 menory。
 
@@ -275,13 +275,13 @@ AI:
 
 ## 构建语言模型应用: Chat 模型(Chat Models)
 
-同样，您可以使用聊天模型而不是 LLMs。聊天模型 是语言模型的一个变体。虽然聊天模型底层用的是语言模型，但它们暴露的接口略有区别：它的 API 不是输入文本、返回文本，而是暴露了一个“聊天消息”的输入和输出。
+同样，你可以使用聊天模型而不是 LLMs。聊天模型 是语言模型的一个变体。虽然聊天模型底层用的是语言模型，但它们暴露的接口略有区别：它的 API 不是输入文本、返回文本，而是暴露了一个“聊天消息”的输入和输出。
 
 Chat 模型是个新 API，我们还在探索怎么更好地抽象。
 
 ## 在 Chat 模型中补全对话(Message Completions)
 
-您可以通过将一条或多条消息传递给聊天模型来补全对话。返回结果是一条消息。LangChain 目前支持的消息类型有 `AIMessage`, `HumanMessage`, `SystemMessage` 和 `ChatMessage` -- `ChatMessage` 接受任意角色参数。大多数时候，使用 `HumanMessage`, `AIMessage` 和 `SystemMessage` 就可以了。
+你可以通过将一条或多条消息传递给聊天模型来补全对话。返回结果是一条消息。LangChain 目前支持的消息类型有 `AIMessage`, `HumanMessage`, `SystemMessage` 和 `ChatMessage` -- `ChatMessage` 接受任意角色参数。大多数时候，使用 `HumanMessage`, `AIMessage` 和 `SystemMessage` 就可以了。
 
 ```python
 from langchain.chat_models import ChatOpenAI
@@ -312,7 +312,7 @@ chat(messages)
 # -> AIMessage(content="J'aime programmer.", additional_kwargs={})
 ```
 
-您可以进一步，使用 `generate` 为多组消息生成补全补全对话。返回结果是一个带有附加 `message` 参数的 `LLMResult`：
+你可以进一步，使用 `generate` 为多组消息生成补全补全对话。返回结果是一个带有附加 `message` 参数的 `LLMResult`：
 
 ```python
 batch_messages = [
