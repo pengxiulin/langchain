@@ -32,7 +32,7 @@ LangChain 提供支持的主要模块有若干个。
 对于每个模块，我们都提供了一些入门示例、操作指南、参考文档和概念指南。
 这些模块的复杂性依次为:
 
-- `Models <./modules/models.html>`_: LangChain 支持的各种模型类型和模型集成。
+- `模型 <./modules/models.html>`_: LangChain 支持的各种模型类型和模型集成。
 
 - `提示词 <./modules/prompts.html>`_: 包括提示词管理、优化和序列化.
 
